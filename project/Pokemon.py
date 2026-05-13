@@ -31,7 +31,7 @@ class Creature:
 class PokemonReader:
     BASE_URL = "https://pokeapi.co/api/v2/pokemon"
 
-    def fetch_as_dict(self, name_or_id: str) -> dict | None:
+    def fetch_as_dict(self, name_or_id: str):
         url = f"{self.BASE_URL}/{name_or_id}"
         try:
             response = requests.get(url, timeout=10)
@@ -58,7 +58,7 @@ class PokemonReader:
             print(f"Unexpected network error: {e}")
         except KeyError as e:
             print(f"Error: unexpected API response structure — missing key: {e}")
-
+            
         return None
 
 class JSONWriter:
