@@ -38,13 +38,13 @@ class PokemonReader:
             if response.status_code == 200:
                 data = response.json()
 
-            types = []
-            for t in data['types']:
-                types.append(t['type']['name'])
-                
-            stats = {}        
-            for stats_item in data['stats']:
-                stats[stats_item['stat']['name']] = stats_item['base_stat']
+                types = []
+                for t in data['types']:
+                    types.append(t['type']['name'])
+                    
+                stats = {}        
+                for stats_item in data['stats']:
+                    stats[stats_item['stat']['name']] = stats_item['base_stat']
 
                 return {
                     'id': data['id'],
@@ -73,11 +73,11 @@ class PokemonReader:
         return None
 
 class JSONWriter:
-    
+    DIR  = "data/creatures"
     def save(self, data):
         try:
             os.makedirs(self.DIR, exist_ok=True)
-            file_path = f"data/creatures/{data['name']}.json"
+            file_path = f"{self.DIR}/{data['name']}.json"
             
             with open(file_path, 'w') as f:
                 json.dump(data, f, indent=2)
